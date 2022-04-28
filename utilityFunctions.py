@@ -2,6 +2,7 @@ import sys
 
 #Global variables
 fileInformation = []
+algorithmToUse = 0
 
 """
 Function: readInputFile
@@ -11,6 +12,7 @@ Description: Function that read the information from input file and call saveInf
              to convert and save the strings informtation in a list with integers
 """
 def readInputFile():
+    global algorithmToUse
 
     fileName = sys.argv[2]
     informationInStr = []
@@ -20,6 +22,8 @@ def readInputFile():
 
         for line in lines:
             informationInStr.append(line.strip('\n'))
+
+    algorithmToUse =  int(sys.argv[1])
 
     convertInformationFromFile(informationInStr)
 
@@ -53,3 +57,4 @@ def convertInformationFromFile(information):
 
 #readInputFile()
 #print(fileInformation)
+#print(algorithmToUse)

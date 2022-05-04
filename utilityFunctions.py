@@ -2,7 +2,7 @@ import sys
 
 #Global variables
 fileInformation = []
-algorithmToUse = 0
+algorithmToUse = []
 
 """
 Function: readInputFile
@@ -23,7 +23,7 @@ def readInputFile():
         for line in lines:
             informationInStr.append(line.strip('\n'))
 
-    algorithmToUse =  int(sys.argv[1])
+    algorithmToUse.append(int(sys.argv[1]))
 
     convertInformationFromFile(informationInStr)
 

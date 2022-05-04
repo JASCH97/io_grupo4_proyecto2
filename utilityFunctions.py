@@ -12,8 +12,7 @@ Description: Function that read the information from input file and call saveInf
              to convert and save the strings informtation in a list with integers
 """
 def readInputFile():
-    global algorithmToUse
-
+    
     fileName = sys.argv[2]
     informationInStr = []
 

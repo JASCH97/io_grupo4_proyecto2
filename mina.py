@@ -54,8 +54,8 @@ def exhaustiveSearchAlgorithm(matrixValues):
             exhaustiveSearchAlgorithmAux(matrixValues,i,1,m,n,goldCollected)
 
             #diagonally up
-            goldCollected = matrixValues[i][0]        #se resetea el oro
-            routes.append(i)                           #se agregan de nuevo estos valores porque se tiene que
+            goldCollected = matrixValues[i][0]        
+            routes.append(i)                           
             routes.append(0)
 
             goldCollected = goldCollected + matrixValues[i-1][1]
@@ -73,8 +73,8 @@ def exhaustiveSearchAlgorithm(matrixValues):
             exhaustiveSearchAlgorithmAux(matrixValues,i,1,m,n,goldCollected)
 
             #diagonal down path
-            goldCollected = matrixValues[i][0]        #se resetea el oro
-            routes.append(i)                           #se agregan de nuevo estos valores porque se tiene que
+            goldCollected = matrixValues[i][0]       
+            routes.append(i)                           
             routes.append(0)
 
             goldCollected = goldCollected + matrixValues[i+1][1]
@@ -83,8 +83,8 @@ def exhaustiveSearchAlgorithm(matrixValues):
             exhaustiveSearchAlgorithmAux(matrixValues,i+1,1,m,n,goldCollected)
 
             #diagonally up
-            goldCollected = matrixValues[i][0]        #se resetea el oro
-            routes.append(i)                           #se agregan de nuevo estos valores porque se tiene que
+            goldCollected = matrixValues[i][0]        
+            routes.append(i)                           
             routes.append(0)
 
             goldCollected = goldCollected + matrixValues[i-1][1]

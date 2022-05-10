@@ -55,6 +55,6 @@ def convertInformationFromFile(information):
 
 
 
-#readInputFile()
-#print(fileInformation)
+readInputFile()
+print(fileInformation)
 #print(algorithmToUse)

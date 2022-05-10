@@ -1,5 +1,5 @@
 import sys
-
+import random
 #Global variables
 fileInformation = []
 algorithmToUse = 0
@@ -53,8 +53,28 @@ def convertInformationFromFile(information):
             i+=1
 
 
+def RotateBlockBrute(Block):
 
+    for i in range(len(Block)):
+            # Obtener un índice aleatorio
+            randindex = random.randint(0, len(Block) - 1)
+            # Intercambiar
+            temp = Block[i]
+            Block[i] = Block[randindex]
+            Block[randindex] = temp
 
-readInputFile()
-print(fileInformation)
+    return Block
+
+def ValidateBlockBrute(Block):
+
+    F = Block[0]
+    P = Block[1]
+    A = Block[2]
+
+    if(F<=P):
+        return True
+    return False
+
+#readInputFile()
+#print(fileInformation)
 #print(algorithmToUse)

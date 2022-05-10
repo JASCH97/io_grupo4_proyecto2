@@ -1,8 +1,23 @@
 import sys
+import utilityFunctions
+
+# Frente (F), Profundidad (P) y Altura (A) donde F <= P
+# Los bloques se pueden rotar en sus dimensiones, y se pueden usar más de un bloque según
+# las rotaciones del mismo tipo para formar la torre. Cada bloque tiene 3 posibles rotaciones.
+# Manteniendo siempre el Frente menor o igual que la Profundidad. Ejemplo bloque
+# {FxPxA} de {2x3x1} solo puede tener 3 posiciones {2x3x1}, {1x2x3} y {1x3x2}.
+
+
 
 def blockTowerBruteForce(BlockList):
     print("Fuerza Bruta")
-
+    for Block in BlockList:
+        BlockChild = utilityFunctions.RotateBlockBrute(Block)
+        print(BlockChild)
+        if(utilityFunctions.ValidateBlockBrute(BlockChild)):
+            print("True")
+        else:
+            print("False")
 def blockTowerDynamic(BlockList):
     print("Dinamico")
 
@@ -22,6 +37,9 @@ for line in a_file:
 a_file.close()
 
 print(list_of_lists)
+for i in range(len(list_of_lists)):
+    for j in range(len(list_of_lists[i])):
+        list_of_lists[i][j] = int(list_of_lists[i][j])
 
 if arg1 == "1":
     blockTowerBruteForce(list_of_lists)

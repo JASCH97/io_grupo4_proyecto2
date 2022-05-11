@@ -10,16 +10,30 @@ import utilityFunctions
 
 
 def blockTowerBruteForce(BlockList):
-    print("Fuerza Bruta")
-    for Block in BlockList:
-        BlockChild = utilityFunctions.RotateBlockBrute(Block)
-        print(BlockChild)
-        if(utilityFunctions.ValidateBlockBrute(BlockChild)):
-            print("True")
-        else:
-            print("False")
+        print("Fuerza Bruta")
+        #for Block in BlockList:
+        Block = BlockList[4]
+        BlockChildren = utilityFunctions.ReturnThreeCandidates(Block)
+        print(BlockChildren)
+        #BlockChild = utilityFunctions.RotateBlockBrute(Block)
+        #print(BlockChild)
+        #if(utilityFunctions.ValidateBlockBrute(BlockChild)):
+            #print("True")
+        #else:
+            #print("False")
+
 def blockTowerDynamic(BlockList):
     print("Dinamico")
+    print("Input:",arg2)
+    utilityFunctions.printBlocks(BlockList)
+    Blocks = []
+    for Block in BlockList:
+
+        BlockChildren = utilityFunctions.RotateDynamic(Block)
+        for BlockAux in BlockChildren:
+            Blocks.append(BlockAux)
+
+    utilityFunctions.GetOptimalHeight(Blocks)
 
 
 # save the first argument (second position in argv list) to a variable
@@ -36,7 +50,6 @@ for line in a_file:
 
 a_file.close()
 
-print(list_of_lists)
 for i in range(len(list_of_lists)):
     for j in range(len(list_of_lists[i])):
         list_of_lists[i][j] = int(list_of_lists[i][j])

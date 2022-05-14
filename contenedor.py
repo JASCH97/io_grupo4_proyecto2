@@ -27,6 +27,7 @@ def  matrix():
     for i in range(len(data)+1):
         a = [0]*(W+1)
         Fmatriz.append(a)
+    print(len(data)+1)
         
 
 
@@ -40,9 +41,9 @@ Description: iterates through the array filling it with the data from data .
 #data[i-1][1] = bi
 
 def bottomUpContainer():
-    for i in range(len(Fmatriz)):
-        if i > 0:
-            for w in range(len(Fmatriz[0])):
+    for i in range(1,len(Fmatriz)):
+        
+            for w in range(1,len(Fmatriz[0])):
                 if data[i-1][0]>w:
                 
                     Fmatriz[i][w]=Fmatriz[i-1][w]
@@ -51,6 +52,7 @@ def bottomUpContainer():
                         Fmatriz[i][w]=data[i-1][1]+Fmatriz[i-1][w-data[i-1][0]]
                     else:
                         Fmatriz[i][w] = Fmatriz[i-1][w]
+
 
 """
 Function:  findElementds
@@ -64,15 +66,13 @@ def findElementds():
     i = len(Fmatriz)-1
    
     k = len(Fmatriz[0])-1
-   
-    while i!=0 and k!=0 :
+  
+    while i>0 and k>0 :
         if Fmatriz[i][k] != Fmatriz[i-1][k]:
             inContainer.append(i)
-
-            i = i-1
             k=k-data[i-1][0]
-            if k<0:
-                k=0
+            i = i-1
+            
         else:
             i = i-1
 """
@@ -86,7 +86,7 @@ Description: prints the final results of the dynamic method
 def finalresults():
     maximumprofit = 0
     for i in list(inContainer):
-        maximumprofit= maximumprofit + data[i-1][1]
+        maximumprofit+= data[i-1][1]
     
     print("maximum benefit: ",maximumprofit)
     print("included: ", end="")

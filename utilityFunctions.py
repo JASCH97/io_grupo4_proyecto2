@@ -1,5 +1,7 @@
 import sys
 import random
+import itertools
+
 #Global variables
 fileInformation = []
 algorithmToUse = 0
@@ -66,25 +68,36 @@ def RotateBlockBrute(Block):
 
     return Block
 
+
+
 def ReturnThreeCandidates(Block):
     candidates = []
 
-    x = 1
-    #longitud
-    while x <= 3:
+    inp_list = Block
+    permutations = list(itertools.permutations(inp_list))
 
-        print(x)
-        print("len lista", len(candidates))
-        #if len(candidates) <= 3:
-        candidate = RotateBlockBrute(Block)
-        print("Candidate",candidate)
-        if ValidateBlockBrute(candidate):
-                print("Agregando:",candidate)
-                candidates.append(candidate)
-                print(candidates)
-                x+=1
+    for block in permutations:
+        if ValidateBlockBrute(block):
+            candidates.append(list(block))
 
-    return candidates
+    newPermutation = []
+    for block in candidates:
+        if block not in newPermutation:
+            newPermutation.append(block)
+
+    return newPermutation
+
+def PermuteBlocks(BlockList):
+    inp_list = BlockList
+    permutations = list(itertools.permutations(inp_list))
+
+    ListedPermutations = []
+    for block in permutations:
+        if ValidateBlockBrute(block):
+            ListedPermutations.append(list(block))
+
+    return ListedPermutations
+
 
 def ValidateBlockBrute(Block):
 
@@ -104,27 +117,51 @@ def RotateDynamic(Block):
     P = Block[1]
     A = Block[2]
 
+    BlockZero = []
     BlockOne = []
     BlockTwo = []
+    BlockThree = []
+    BlockFour = []
+    BlockFive = []
 
+
+    if A<=F and A<=P:
+        BlockZero.append(A)
+        BlockZero.append(P)
+        BlockZero.append(F)
     if A<=P:
         BlockOne.append(A)
         BlockOne.append(P)
         BlockOne.append(F)
-    if P>A:
+    if P>=A:
         BlockTwo.append(A)
         BlockTwo.append(F)
         BlockTwo.append(P)
+    if A>=F:
+        BlockThree.append(F)
+        BlockThree.append(A)
+        BlockThree.append(P)
+    if P<=A:
+        BlockFour.append(P)
+        BlockFour.append(A)
+        BlockFour.append(F)
+    if P<=F:
+        BlockFive.append(P)
+        BlockFive.append(F)
+        BlockFive.append(A)
 
     candidates = []
     candidates.append(Block)
+
     if BlockOne!=[]:
         candidates.append(BlockOne)
     if BlockTwo != []:
         candidates.append(BlockTwo)
+    if BlockThree != []:
+        candidates.append(BlockThree)
     return candidates
 
-def GetOptimalHeight(BlockList):
+def GetOptimalHeight(BlockList,Arg):
     NewOrder = []
 
     #for count in range (0,len(BlockList)-1):
@@ -161,13 +198,18 @@ def GetOptimalHeight(BlockList):
     for block in NewOrder:
         height = height + block[2]
 
-    #print("BlockList:", BlockList)
-    print("Blocks:", NewOrder)
-    print("Max Height", height)
+    if Arg == "2":
+        #print("BlockList:", BlockList)
+        print("Blocks:", NewOrder)
+        print("Max Height:", height)
+
+    outcome = [height,NewOrder]
+    return outcome
 
 def printBlocks(BlockList):
     for block in BlockList:
         print(block)
+#ReturnThreeCandidates([3, 5, 1])
 #readInputFile()
 #print(fileInformation)
 #print(algorithmToUse)

@@ -11,10 +11,33 @@ import utilityFunctions
 
 def blockTowerBruteForce(BlockList):
         print("Fuerza Bruta")
-        #for Block in BlockList:
-        Block = BlockList[4]
-        BlockChildren = utilityFunctions.ReturnThreeCandidates(Block)
-        print(BlockChildren)
+        print("Input:", arg2)
+        utilityFunctions.printBlocks(BlockList)
+        BlocksToPerm = []
+        for Block in BlockList:
+            #Block = BlockList[4]
+            BlockChildren = utilityFunctions.ReturnThreeCandidates(Block)
+            for block in BlockChildren:
+                BlocksToPerm.append(block)
+
+        print(BlocksToPerm)
+
+        Permutations = utilityFunctions.PermuteBlocks(BlocksToPerm)
+        OptimalCandidate = None
+        OptimalHeight = 0
+        for perm in Permutations:
+            permAux = perm.copy()
+            Outcome = utilityFunctions.GetOptimalHeight(perm,arg1)
+            #print(Height)
+            Height = Outcome[0]
+            NewOrder = Outcome[1]
+            if Height > OptimalHeight:
+                OptimalCandidate = NewOrder
+                #print(permAux)
+                OptimalHeight = Height
+
+        print("Blocks:",OptimalCandidate)
+        print("Max Height:",OptimalHeight)
         #BlockChild = utilityFunctions.RotateBlockBrute(Block)
         #print(BlockChild)
         #if(utilityFunctions.ValidateBlockBrute(BlockChild)):
@@ -26,14 +49,15 @@ def blockTowerDynamic(BlockList):
     print("Dinamico")
     print("Input:",arg2)
     utilityFunctions.printBlocks(BlockList)
+
     Blocks = []
     for Block in BlockList:
-
         BlockChildren = utilityFunctions.RotateDynamic(Block)
         for BlockAux in BlockChildren:
             Blocks.append(BlockAux)
 
-    utilityFunctions.GetOptimalHeight(Blocks)
+    #print(Blocks)
+    utilityFunctions.GetOptimalHeight(Blocks,arg1)
 
 
 # save the first argument (second position in argv list) to a variable

@@ -42,7 +42,6 @@ Description: iterates through the array filling it with the data from data .
 
 def bottomUpContainer():
     for i in range(1,len(Fmatriz)):
-        
             for w in range(1,len(Fmatriz[0])):
                 if data[i-1][0]>w:
                 
@@ -69,7 +68,7 @@ def findElementds():
   
     while i>0 and k>0 :
         if Fmatriz[i][k] != Fmatriz[i-1][k]:
-            inContainer.append(i)
+            inContainer.append(i) #object can be stored
             k=k-data[i-1][0]
             i = i-1
             
@@ -107,17 +106,17 @@ def BruteForceContainer(W, data, n, inContainer2):
    
     if n == 0 or W == 0 :
        return 0,inContainer2
- 
+        #if it is greater than w it cannot be stored
     if (data[n-1][0] > W):
         return BruteForceContainer(W, data, n-1, inContainer2)
-   
+
     else:
         inContainer2Aux = (inContainer2 +(n,))
         temp,inContainer2Aux =  BruteForceContainer(W-data[n-1][0], data, n-1, (inContainer2Aux))
         temp+=data[n-1][1] 
         temp2,inContainer2 = BruteForceContainer(W, data, n-1, inContainer2)
         if temp>temp2:
-            return temp,inContainer2Aux
+            return temp,inContainer2Aux #object can be stored. is stored in inContainer
         return temp2,inContainer2
   
 
@@ -148,7 +147,7 @@ def main() :
         print(finalresults2[1][len(finalresults2[1])-1])
         end = default_timer()
         executionTime = end - start
-        print("Execution Time: ",executionTime, "seconds\n")
+        print("Execution Time: ","{:.10f}".format(executionTime), "seconds\n")
     elif x == 2:
         print("dynamic")
         start = default_timer()
@@ -158,7 +157,7 @@ def main() :
         finalresults()
         end = default_timer()
         executionTime = end - start
-        print("Execution Time: ",executionTime, "seconds\n")
+        print("Execution Time: ","{:.10f}".format(executionTime), "seconds\n")
     else:
         print("wrong method entered: 1 brute force method, 2 dynamic method")
 

@@ -184,6 +184,10 @@ def RotateDynamic(Block):
         candidates.append(BlockTwo)
     if BlockThree != []:
         candidates.append(BlockThree)
+    if BlockFour != []:
+        candidates.append(BlockFour)
+    if BlockFive != []:
+        candidates.append(BlockFive)
     return candidates
 
 """

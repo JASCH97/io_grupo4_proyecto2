@@ -70,6 +70,13 @@ def RotateBlockBrute(Block):
 
 
 
+"""
+Function: ReturnThreeCandidates
+Input: Block
+Output: newPermutation
+Description: This function is responsible for creating all the three candidates meaning the block and its rotations
+"""
+
 def ReturnThreeCandidates(Block):
     candidates = []
 
@@ -87,6 +94,13 @@ def ReturnThreeCandidates(Block):
 
     return newPermutation
 
+"""
+Function: PermuteBlocks
+Input: BlockList
+Output: ListedPermutations
+Description: This function is responsible for creating all the permutations of the matrix BlockList
+"""
+
 def PermuteBlocks(BlockList):
     inp_list = BlockList
     permutations = list(itertools.permutations(inp_list))
@@ -98,6 +112,12 @@ def PermuteBlocks(BlockList):
 
     return ListedPermutations
 
+"""
+Function: ValidateBlockBrute
+Input: Block
+Output: Boolean
+Description: Validates F <= P
+"""
 
 def ValidateBlockBrute(Block):
 
@@ -111,6 +131,13 @@ def ValidateBlockBrute(Block):
 
 """
 Utils for Dynamic Algorithm
+"""
+
+"""
+Function: RotateDynamic
+Input: Block
+Output: candidates
+Description: Makes the rotation dinamically by setting the base cases
 """
 def RotateDynamic(Block):
     F = Block[0]
@@ -161,19 +188,23 @@ def RotateDynamic(Block):
         candidates.append(BlockThree)
     return candidates
 
+"""
+Function: GetOptimalHeight
+Input: BlockList, Argument (Method Used, Brute or Dinamic)
+Output: Outcome [Blocks, Height]
+Description: Gets the and orders the Block List entered and returns its maximun Height
+"""
 def GetOptimalHeight(BlockList,Arg):
+    #The rearranged Blocklist will be stored in NewOrder
     NewOrder = []
 
-    #for count in range (0,len(BlockList)-1):
     while BlockList!=[]:
         BaseIndex = 0
         BlockBase = [0, 0, 0]
         x = 0
         while x <= len(BlockList)-1:
-                #print(BlockBase)
 
                 if BlockList[x][0]>=BlockBase[0] and BlockList[x][1]>=BlockBase[1]:
-                    #print(BlockList[x][0],BlockList[x][1])
                     BlockBase = BlockList[x]
                     BaseIndex = x
                 x=x+1
@@ -185,10 +216,8 @@ def GetOptimalHeight(BlockList,Arg):
                 NewOrder.append(BlockBase)
                 BlockList.remove(y)
 
-    #print("Blocks:", NewOrder)
     aux = 1
     while aux <= len(NewOrder)-1:
-        #print(aux)
         if (NewOrder[aux][0]>NewOrder[aux-1][0]) or (NewOrder[aux][1]>NewOrder[aux-1][1]):
             NewOrder.pop(aux)
         else:
@@ -199,7 +228,6 @@ def GetOptimalHeight(BlockList,Arg):
         height = height + block[2]
 
     if Arg == "2":
-        #print("BlockList:", BlockList)
         print("Blocks:", NewOrder)
         print("Max Height:", height)
 
